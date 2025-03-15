@@ -2,12 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import * as types from "../types";
 
-const Decklist: React.FC = () => {
-  const [decks, setDecks] = useState<types.Deck[]>([
-    { id: 1, name: "Korean", cards: [] },
-    { id: 2, name: "Spanish", cards: [] },
-    { id: 3, name: "French", cards: [] },
-  ]);
+const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   const [inputDeck, setDeck] = useState<types.InputDeck>(types.createInputDeck);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -22,11 +17,21 @@ const Decklist: React.FC = () => {
     if (inputDeck.name.trim() !== "") {
       const newDeck = types.createDeck(inputDeck);
       setDecks((prevDecks) => [...prevDecks, newDeck]);
+      setDeck(types.createInputDeck());
     }
   }
 
   return (
     <div>
+      <ol>
+        {decks.map((deck, index) => (
+          <Link to={`/edit/${deck.id}`}>
+            <li key={index}>
+              <span className="text">{deck.name}</span>
+            </li>
+          </Link>
+        ))}
+      </ol>
       <input
         type="text"
         name="name"
@@ -38,19 +43,6 @@ const Decklist: React.FC = () => {
         {" "}
         +{" "}
       </button>
-      <ol>
-        {decks.map((deck, index) => (
-          <li key={index}>
-            <span className="text">{deck.name}</span>
-            <button className="edit-button">
-              <Link to={`/edit/${deck.id}`}>Edit</Link>
-            </button>
-            <button className="study-button">
-              <Link to={`/study/${deck.id}`}>Study</Link>
-            </button>
-          </li>
-        ))}
-      </ol>
     </div>
   );
 };
