@@ -36,6 +36,7 @@ button{
 
 .add-button{
   background-color: hsl(125, 47%, 54%);
+  margin-left: 10px;
 }
 
 .add-button:hover{
@@ -86,6 +87,7 @@ li{
   border-radius: 5px;
   display: flex;
   align-items: center;
+  color:black;
 }
 .text{
   flex: 1

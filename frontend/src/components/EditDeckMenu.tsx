@@ -1,34 +1,22 @@
 import React, { useState } from "react";
-
-interface InputCard {
-  front: string;
-  back: string;
-}
-const createEmptyCard = (): InputCard => ({
-  front: "",
-  back: "",
-});
+import * as types from "../types";
 
 const EditDeckMenu: React.FC = () => {
-  const [cards, setCards] = useState<InputCard[]>([]);
-  const [newCard, setCard] = useState<InputCard>(createEmptyCard());
+  const [cards, setCards] = useState<types.InputCard[]>([]);
+  const [newCard, setCard] = useState<types.InputCard>(types.createInputCard());
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(newCard);
     const { name, value } = event.target;
-    console.log("name: " + name + " | value: " + value);
-    setCard((prevCard: InputCard) => ({
+    setCard((prevCard: types.InputCard) => ({
       ...prevCard,
       [name]: value,
     }));
-    console.log(newCard);
   }
 
   function addCard() {
-    console.log(newCard);
     if (newCard.front.trim() !== "" && newCard.back.trim() !== "") {
-      setCards((t) => [...t, newCard]);
-      setCard(createEmptyCard());
+      setCards((prevCards) => [...prevCards, newCard]);
+      setCard(types.createInputCard());
     }
   }
 
@@ -58,6 +46,7 @@ const EditDeckMenu: React.FC = () => {
       setCards(updatedTasks);
     }
   }
+
   return (
     <div className="edit-deck">
       <h1>Edit Deck</h1>

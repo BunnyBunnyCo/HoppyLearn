@@ -5,7 +5,8 @@ function EditDeck() {
   return (
     <div>
       <Link to={`/`}>Dashboard</Link>
-      <Link to={`/study/1}`}>Study Deck</Link>
+      <span> </span>
+      <Link to={`/study/1}`}>Study</Link>
       <EditDeckMenu />
     </div>
   );
