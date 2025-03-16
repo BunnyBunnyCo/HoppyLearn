@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as types from "../types";
+import { useParams } from "react-router-dom";
 
-const EditDeckMenu: React.FC = () => {
-  const [cards, setCards] = useState<types.InputCard[]>([]);
-  const [newCard, setCard] = useState<types.InputCard>(types.createInputCard());
+let currentDeck: types.Deck = {
+  id: 0,
+  name: "",
+  cards: [],
+};
+
+const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
+  const [inputCard, setCard] = useState<types.InputCard>(
+    types.createInputCard()
+  );
+
+  const { id } = useParams<{ id: string }>();
+  const deckID: number = idToNum(id);
+  const deck = decks.get(deckID);
+  useEffect(() => {
+    if (!deck) return;
+    currentDeck = deck;
+  }, []);
+
+  if (!deck) {
+    return <h1>Deck {id} Not Found!</h1>;
+  }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -14,55 +34,68 @@ const EditDeckMenu: React.FC = () => {
   }
 
   function addCard() {
-    if (newCard.front.trim() !== "" && newCard.back.trim() !== "") {
-      setCards((prevCards) => [...prevCards, newCard]);
+    if (inputCard.front.trim() !== "" && inputCard.back.trim() !== "") {
+      const newCard = types.createCard(deckID, inputCard);
+      currentDeck.cards.push(newCard);
+      resetDecks();
       setCard(types.createInputCard());
     }
   }
 
   function deleteTask(index: number) {
-    const updatedTasks = cards.filter((_, i) => i !== index);
-    setCards(updatedTasks);
+    const updatedCards = currentDeck.cards.filter((_, i) => i !== index);
+    currentDeck.cards = updatedCards;
+    resetDecks();
   }
 
   function moveTaskUp(index: number) {
     if (index > 0) {
-      const updatedTasks = [...cards];
-      [updatedTasks[index], updatedTasks[index - 1]] = [
-        updatedTasks[index - 1],
-        updatedTasks[index],
+      const updatedCards = [...currentDeck.cards];
+      [updatedCards[index], updatedCards[index - 1]] = [
+        updatedCards[index - 1],
+        updatedCards[index],
       ];
-      setCards(updatedTasks);
+      currentDeck.cards = updatedCards;
+      resetDecks();
     }
   }
 
   function moveTaskDown(index: number) {
-    if (index < cards.length - 1) {
-      const updatedTasks = [...cards];
-      [updatedTasks[index], updatedTasks[index + 1]] = [
-        updatedTasks[index + 1],
-        updatedTasks[index],
+    if (index < currentDeck.cards.length - 1) {
+      const updatedCards = [...currentDeck.cards];
+      [updatedCards[index], updatedCards[index + 1]] = [
+        updatedCards[index + 1],
+        updatedCards[index],
       ];
-      setCards(updatedTasks);
+      currentDeck.cards = updatedCards;
+      resetDecks();
     }
+  }
+
+  function resetDecks() {
+    setDecks((prevDecks) => {
+      const newDecks = new Map(prevDecks);
+      newDecks.set(deckID, currentDeck);
+      return newDecks;
+    });
   }
 
   return (
     <div className="edit-deck">
-      <h1>Edit Deck</h1>
+      <h1>{decks.get(deckID)?.name}</h1>
       <div className="inputLine">
         <input
           name="front"
           type="text"
           placeholder="Front"
-          value={newCard.front}
+          value={inputCard.front}
           onChange={handleInputChange}
         />
         <input
           name="back"
           type="text"
           placeholder="Back"
-          value={newCard.back}
+          value={inputCard.back}
           onChange={handleInputChange}
         />
         <button className="add-button" onClick={addCard}>
@@ -71,7 +104,7 @@ const EditDeckMenu: React.FC = () => {
       </div>
 
       <ol>
-        {cards.map((card, index) => (
+        {decks.get(deckID)?.cards.map((card, index) => (
           <li key={index}>
             <span className="text">
               {card.front} | {card.back}
@@ -91,5 +124,12 @@ const EditDeckMenu: React.FC = () => {
     </div>
   );
 };
+
+function idToNum(id: string | undefined): number {
+  if (id === undefined) {
+    return NaN;
+  }
+  return parseInt(id, 10);
+}
 
 export default EditDeckMenu;

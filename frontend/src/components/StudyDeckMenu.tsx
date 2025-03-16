@@ -1,4 +1,6 @@
-const StudyDeckMenu: React.FC = () => {
+import * as types from "../types";
+
+const StudyDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   return <></>;
 };
 

@@ -16,7 +16,11 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   function addDeck() {
     if (inputDeck.name.trim() !== "") {
       const newDeck = types.createDeck(inputDeck);
-      setDecks((prevDecks) => [...prevDecks, newDeck]);
+      setDecks((prevDecks) => {
+        const newDecks = new Map(prevDecks);
+        newDecks.set(newDeck.id, newDeck);
+        return newDecks;
+      });
       setDeck(types.createInputDeck());
     }
   }
@@ -24,9 +28,9 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   return (
     <div>
       <ol>
-        {decks.map((deck, index) => (
+        {Array.from(decks.entries()).map(([id, deck]) => (
           <Link to={`/edit/${deck.id}`}>
-            <li key={index}>
+            <li key={id}>
               <span className="text">{deck.name}</span>
             </li>
           </Link>
