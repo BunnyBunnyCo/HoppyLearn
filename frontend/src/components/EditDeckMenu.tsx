@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import * as types from "../types";
 import { useParams } from "react-router-dom";
+import * as types from "../types";
+import * as util from "../util/helpers";
 
 let currentDeck: types.Deck = {
   id: 0,
@@ -14,7 +15,7 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   );
 
   const { id } = useParams<{ id: string }>();
-  const deckID: number = idToNum(id);
+  const deckID: number = util.idToNum(id);
   const deck = decks.get(deckID);
   useEffect(() => {
     if (!deck) return;
@@ -110,13 +111,13 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
               {card.front} | {card.back}
             </span>
             <button className="delete-button" onClick={() => deleteTask(index)}>
-              Delete
+              🗑
             </button>
             <button className="move-button" onClick={() => moveTaskUp(index)}>
-              Up
+              ☝
             </button>
             <button className="move-button" onClick={() => moveTaskDown(index)}>
-              Down
+              👇
             </button>
           </li>
         ))}
@@ -124,12 +125,5 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
     </div>
   );
 };
-
-function idToNum(id: string | undefined): number {
-  if (id === undefined) {
-    return NaN;
-  }
-  return parseInt(id, 10);
-}
 
 export default EditDeckMenu;

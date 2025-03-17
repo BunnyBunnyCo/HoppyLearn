@@ -36,17 +36,19 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
           </Link>
         ))}
       </ol>
-      <input
-        type="text"
-        name="name"
-        value={inputDeck.name}
-        placeholder="New Deck?"
-        onChange={handleInputChange}
-      ></input>
-      <button className="add-button" onClick={addDeck}>
-        {" "}
-        +{" "}
-      </button>
+      <div className="inputLine">
+        <input
+          type="text"
+          name="name"
+          value={inputDeck.name}
+          placeholder="New Deck?"
+          onChange={handleInputChange}
+        ></input>
+        <button className="add-button" onClick={addDeck}>
+          {" "}
+          +{" "}
+        </button>
+      </div>
     </div>
   );
 };
