@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import EditDeckMenu from "../components/EditDeckMenu";
+import * as types from "../types";
 
-function EditDeck() {
-  return (
-    <div>
-      <Link to={`/`}>Dashboard</Link>
-      <span> </span>
-      <Link to={`/study/1}`}>Study</Link>
-      <EditDeckMenu />
-    </div>
-  );
+function EditDeck({ decks, setDecks }: types.SharedProps) {
+  return <EditDeckMenu decks={decks} setDecks={setDecks} />;
 }
 
 export default EditDeck;

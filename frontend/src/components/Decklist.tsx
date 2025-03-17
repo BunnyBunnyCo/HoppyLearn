@@ -16,33 +16,39 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   function addDeck() {
     if (inputDeck.name.trim() !== "") {
       const newDeck = types.createDeck(inputDeck);
-      setDecks((prevDecks) => [...prevDecks, newDeck]);
+      setDecks((prevDecks) => {
+        const newDecks = new Map(prevDecks);
+        newDecks.set(newDeck.id, newDeck);
+        return newDecks;
+      });
       setDeck(types.createInputDeck());
     }
   }
 
   return (
-    <div>
+    <div className="decklist">
       <ol>
-        {decks.map((deck, index) => (
+        {Array.from(decks.entries()).map(([id, deck]) => (
           <Link to={`/edit/${deck.id}`}>
-            <li key={index}>
+            <li key={id}>
               <span className="text">{deck.name}</span>
             </li>
           </Link>
         ))}
       </ol>
-      <input
-        type="text"
-        name="name"
-        value={inputDeck.name}
-        placeholder="New Deck?"
-        onChange={handleInputChange}
-      ></input>
-      <button className="add-button" onClick={addDeck}>
-        {" "}
-        +{" "}
-      </button>
+      <div className="inputLine">
+        <input
+          type="text"
+          name="name"
+          value={inputDeck.name}
+          placeholder="New Deck?"
+          onChange={handleInputChange}
+        ></input>
+        <button className="add-button" onClick={addDeck}>
+          {" "}
+          +{" "}
+        </button>
+      </div>
     </div>
   );
 };

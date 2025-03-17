@@ -14,10 +14,12 @@ export interface Deck {
   name: string;
   cards: Card[];
 }
+
+// This will be a call to backend in future
 export function createDeck(inputDeck: InputDeck): Deck {
   return {
     name: inputDeck.name,
-    id: 4, //TEMP FOR TESTING
+    id: Math.floor(Math.random() * (1000000000 - 3 + 1)) + 3, //TEMP FOR TESTING
     cards: [],
   };
 }
