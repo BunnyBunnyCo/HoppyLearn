@@ -26,7 +26,7 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   }
 
   return (
-    <div>
+    <div className="decklist">
       <ol>
         {Array.from(decks.entries()).map(([id, deck]) => (
           <Link to={`/edit/${deck.id}`}>

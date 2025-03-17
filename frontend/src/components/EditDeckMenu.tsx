@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as types from "../types";
 import * as util from "../util/helpers";
-
+import trash from "../assets/trashcan.svg";
+import upArrow from "../assets/up-arrow.svg";
+import downArrow from "../assets/down-arrow.svg";
+import home from "../assets/home.svg";
+import book from "../assets/book.svg";
 let currentDeck: types.Deck = {
   id: 0,
   name: "",
@@ -20,7 +24,7 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   useEffect(() => {
     if (!deck) return;
     currentDeck = deck;
-  }, []);
+  });
 
   if (!deck) {
     return <h1>Deck {id} Not Found!</h1>;
@@ -49,7 +53,7 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
     resetDecks();
   }
 
-  function moveTaskUp(index: number) {
+  function moveCardUp(index: number) {
     if (index > 0) {
       const updatedCards = [...currentDeck.cards];
       [updatedCards[index], updatedCards[index - 1]] = [
@@ -61,7 +65,7 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
     }
   }
 
-  function moveTaskDown(index: number) {
+  function moveCardDown(index: number) {
     if (index < currentDeck.cards.length - 1) {
       const updatedCards = [...currentDeck.cards];
       [updatedCards[index], updatedCards[index + 1]] = [
@@ -83,7 +87,24 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
 
   return (
     <div className="edit-deck">
-      <h1>{decks.get(deckID)?.name}</h1>
+      <div className="header">
+        <h1 className="header-title">{deck.name}</h1>
+        <div className="header-buttons">
+          <Link to={`/`}>
+            <button className="header-button">
+              <img src={home} alt="home" className="header-button-icon" />
+              <span>Home</span>
+            </button>
+          </Link>
+          <Link to={`/study/${deck.id}`}>
+            <button className="header-button">
+              <img src={book} alt="book" className="header-button-icon" />
+              <span>Study</span>
+            </button>
+          </Link>
+        </div>
+      </div>
+
       <div className="inputLine">
         <input
           name="front"
@@ -106,18 +127,21 @@ const EditDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
 
       <ol>
         {decks.get(deckID)?.cards.map((card, index) => (
-          <li key={index}>
+          <li key={index} className="list-card">
             <span className="text">
               {card.front} | {card.back}
             </span>
-            <button className="delete-button" onClick={() => deleteTask(index)}>
-              🗑
+            <button
+              className="delete-button "
+              onClick={() => deleteTask(index)}
+            >
+              <img src={trash} alt="Delete" className="button-icon" />
             </button>
-            <button className="move-button" onClick={() => moveTaskUp(index)}>
-              ☝
+            <button className="move-button" onClick={() => moveCardUp(index)}>
+              <img src={upArrow} alt="Up" className="button-icon" />
             </button>
-            <button className="move-button" onClick={() => moveTaskDown(index)}>
-              👇
+            <button className="move-button" onClick={() => moveCardDown(index)}>
+              <img src={downArrow} alt="Up" className="button-icon" />
             </button>
           </li>
         ))}

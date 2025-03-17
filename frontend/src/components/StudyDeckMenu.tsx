@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import * as types from "../types";
 import * as util from "../util/helpers";
-import { useParams, Link } from "react-router-dom";
+import home from "../assets/home.svg";
+import edit from "../assets/edit.jpg";
 
 const StudyDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -15,7 +17,7 @@ const StudyDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
     return <h1>Deck {id} Not Found!</h1>;
   }
 
-  if (deck.cards.length == 0) {
+  if (deck.cards.length === 0) {
     return (
       <div>
         <h1>Your {deck.name} deck has no Cards!</h1>
@@ -48,7 +50,24 @@ const StudyDeckMenu: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
 
   return (
     <div className="study-deck">
-      <h1>{deck.name}</h1>
+      <div className="header">
+        <h1 className="header-title">{deck.name}</h1>
+        <div className="header-buttons">
+          <Link to={`/`}>
+            <button className="header-button">
+              <img src={home} alt="home" className="header-button-icon" />
+              <span>Home</span>
+            </button>
+          </Link>
+          <Link to={`/edit/${deck.id}`}>
+            <button className="header-button">
+              <img src={edit} alt="pencil" className="header-button-icon" />
+              <span>Edit</span>
+            </button>
+          </Link>
+        </div>
+      </div>
+
       <div className="flashcard" onClick={() => setIsRevealed(!isRevealed)}>
         <div className="card-content">
           <p className="front-text">{deck.cards[currentIndex].front}</p>
