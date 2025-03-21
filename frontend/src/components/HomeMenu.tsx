@@ -30,9 +30,9 @@ const HomeMenu: React.FC = () => {
   return (
     <div className="decklist">
       <ol>
-        {Array.from(decks.entries()).map(([id, deck]) => (
+        {Array.from(decks.entries()).map(([_, deck]) => (
           <Link to={`/edit/${deck.id}`}>
-            <li key={id}>
+            <li key={deck.id}>
               <span className="text">{deck.name}</span>
             </li>
           </Link>

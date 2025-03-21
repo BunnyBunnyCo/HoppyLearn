@@ -344,7 +344,7 @@ li:active:not(.list-card){
 .answer-section {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0s ease-in-out;
+  transition: max-height 0.1s ease-in-out;
 }
 .unfold {
   max-height: 125px;
