@@ -1,5 +1,6 @@
+
 export interface HeaderProps {  
-  navButtons: NavButtonProps[];
+  navButtons: React.ReactElement<NavButtonProps>[];
 }
 
 export interface NavButtonProps {
