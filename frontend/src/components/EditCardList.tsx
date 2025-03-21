@@ -12,7 +12,7 @@ const EditCardList: React.FC<EditCardListProps> = ({ deck, resetDecks }) => {
     <ol>
       {deck.cards.map((card, index) => (
         <EditCard
-          key={index}
+          key={card.id}
           card={card}
           deck={deck}
           index={index}
