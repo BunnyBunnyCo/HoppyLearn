@@ -14,10 +14,10 @@ function EditDeck() {
 
   if (!deck) {
     return (
-      <>
-        <Header navButtons={navButtons} />
+      <div className="edit-deck">
+        <Header navButtons={navButtons} title="Edit" />
         <h1>Deck Not Found!</h1>
-      </>
+      </div>
     );
   }
 
@@ -31,7 +31,7 @@ function EditDeck() {
   );
   return (
     <div className="edit-deck">
-      <Header navButtons={navButtons} />
+      <Header navButtons={navButtons} title="Edit" />
       <EditDeckMenu />
     </div>
   );

@@ -14,10 +14,10 @@ function StudyDeck() {
 
   if (!deck) {
     return (
-      <>
-        <Header navButtons={navButtons} />
+      <div className="study-deck">
+        <Header navButtons={navButtons} title="Study" />
         <h1>Deck Not Found!</h1>
-      </>
+      </div>
     );
   }
 
@@ -32,7 +32,7 @@ function StudyDeck() {
 
   return (
     <div className="study-deck">
-      <Header navButtons={navButtons} />
+      <Header navButtons={navButtons} title="Study" />
       <StudyDeckMenu />
     </div>
   );
