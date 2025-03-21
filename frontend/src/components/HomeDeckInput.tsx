@@ -1,11 +1,9 @@
-import React, { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import * as types from "../types";
 import { DecksContext } from "../contexts/DecksContextProvider";
-import HomeDecklist from "./HomeDecklist";
-import HomeDeckInput from "./HomeDeckInput";
 
-const HomeMenu: React.FC = () => {
-  const { decks, setDecks } = useContext(DecksContext);
+const HomeDeckInput: React.FC = () => {
+  const { setDecks } = useContext(DecksContext);
   const [inputDeck, setDeck] = useState<types.InputDeck>(types.createInputDeck);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -29,11 +27,20 @@ const HomeMenu: React.FC = () => {
   }
 
   return (
-    <div className="decklist">
-      <HomeDecklist />
-      <HomeDeckInput />
+    <div className="inputLine">
+      <input
+        type="text"
+        name="name"
+        value={inputDeck.name}
+        placeholder="New Deck?"
+        onChange={handleInputChange}
+      ></input>
+      <button className="add-button" onClick={addDeck}>
+        {" "}
+        +{" "}
+      </button>
     </div>
   );
 };
 
-export default HomeMenu;
+export default HomeDeckInput;
