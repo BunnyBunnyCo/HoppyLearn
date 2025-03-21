@@ -1,4 +1,3 @@
-import bunny from "../assets/smilebunny.png";
 import HomeMenu from "../components/HomeMenu";
 import Header from "../components/Header";
 
