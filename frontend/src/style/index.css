@@ -29,7 +29,7 @@
   justify-content: center; 
 }
 
-.App {
+.Home {
   text-align: center;
 }
 
@@ -97,7 +97,7 @@ code {
   justify-content: center;
   align-items: center;
   text-align: center;
-
+  padding: 20px;
 }
 
 h1{
@@ -133,31 +133,32 @@ h5{
   flex-shrink: 0;
 }
 
-.header-button {
+.nav-button {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: left; 
   height: 2rem;
+  width: 4.5rem;
   padding: 2px;
   font-size: 1.4rem;
   margin-left: 10px;
-  gap: 4px;
   border: none;
   border-radius: 5px;
   flex-shrink: 0;
 }
 
-.header-button-icon {
-  padding-left: 5px;
-  width: 60%;
+.nav-button-icon {
   height: 60%;
+  padding: 2px;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
 }
-.header-button span {
-  padding-right: 5px;
+
+.nav-button span {
   font-size: 0.8rem;
   white-space: nowrap;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -256,7 +257,7 @@ input:focus{
 
 ol{
   padding: 0;
-  width: 80%
+  width: 90%
 }
 
 li{
@@ -264,7 +265,7 @@ li{
   font-weight: bold;
   padding: 0.5rem;
   background-color: var(--bg-panel);
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   border: 3px solid hsla(0, 0%, 85%, 0.75);
   border-radius: 5px;
   display: flex;
@@ -343,7 +344,7 @@ li:active:not(.list-card){
 .answer-section {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0s ease-in-out;
+  transition: max-height 0.1s ease-in-out;
 }
 .unfold {
   max-height: 125px;

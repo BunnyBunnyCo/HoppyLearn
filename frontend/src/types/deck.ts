@@ -9,6 +9,11 @@ export function createInputDeck(): InputDeck {
   };
 }
 
+export interface CurrentDeck {
+  id: number;
+  name: string;
+}
+// probably just for testing (to make easier to access data)
 export interface Deck {
   id: number;
   name: string;
