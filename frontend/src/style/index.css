@@ -133,7 +133,7 @@ h5{
   flex-shrink: 0;
 }
 
-.header-button {
+.nav-button {
   display: flex;
   align-items: center;
   justify-content: left; 
@@ -147,13 +147,14 @@ h5{
   flex-shrink: 0;
 }
 
-.header-button-icon {
+.nav-button-icon {
   height: 60%;
   padding: 2px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
 }
-.header-button span {
+
+.nav-button span {
   font-size: 0.8rem;
   white-space: nowrap;
 }
@@ -256,7 +257,7 @@ input:focus{
 
 ol{
   padding: 0;
-  width: 80%
+  width: 90%
 }
 
 li{

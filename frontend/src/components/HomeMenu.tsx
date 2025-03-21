@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import * as types from "../types";
+import { DecksContext } from "../contexts/DecksContextProvider";
 
-const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
+const HomeMenu: React.FC = () => {
+  const { decks, setDecks } = useContext(DecksContext);
   const [inputDeck, setDeck] = useState<types.InputDeck>(types.createInputDeck);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -53,4 +55,4 @@ const Decklist: React.FC<types.SharedProps> = ({ decks, setDecks }) => {
   );
 };
 
-export default Decklist;
+export default HomeMenu;

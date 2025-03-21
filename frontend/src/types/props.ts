@@ -1,6 +1,11 @@
-import * as types from ".";
-
-export interface SharedProps {
-  decks: Map<number, types.Deck>;
-  setDecks: React.Dispatch<React.SetStateAction<Map<number, types.Deck>>>;
+export interface HeaderProps {  
+  navButtons: NavButtonProps[];
 }
+
+export interface NavButtonProps {
+  icon: string;
+  text: string;
+  alt: string;
+  destination: string;
+}
+
