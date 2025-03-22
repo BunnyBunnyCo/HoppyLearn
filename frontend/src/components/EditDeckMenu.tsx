@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { DecksContext } from "../contexts/DecksContextProvider";
 import { CurrentDeckContext } from "../contexts/CurrentDeckContextProvider";
 import * as types from "../types";
 import EditCardList from "./EditCardList";
-import EditCardInput from "./EditCardInput";
+import { EditDeckContextProvider } from "../contexts/EditDeckContextProvider";
 
 const EditDeckMenu: React.FC = () => {
   const { decks, setDecks } = useContext(DecksContext);
   const { currentDeck } = useContext(CurrentDeckContext);
-  const [inputCard, setCard] = useState<types.InputCard>(
-    types.createInputCard()
-  );
 
   const deck = decks.get(currentDeck.id);
   if (!deck) {
@@ -26,15 +23,9 @@ const EditDeckMenu: React.FC = () => {
   }
 
   return (
-    <>
-      <EditCardInput
-        inputCard={inputCard}
-        setCard={setCard}
-        deck={deck}
-        resetDecks={resetDecks}
-      />
+    <EditDeckContextProvider>
       <EditCardList deck={deck} resetDecks={resetDecks} />
-    </>
+    </EditDeckContextProvider>
   );
 };
 

@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { EditDeckContext } from "../contexts/EditDeckContextProvider";
 import * as types from "../types";
 
 interface EditCardInputProps {
-  inputCard: types.InputCard;
-  setCard: React.Dispatch<React.SetStateAction<types.InputCard>>;
   deck: types.Deck;
   resetDecks: (updatedDeck: types.Deck) => void;
 }
 
-const EditCardInput: React.FC<EditCardInputProps> = ({
-  inputCard,
-  setCard,
-  deck,
-  resetDecks,
-}) => {
+const EditCardInput: React.FC<EditCardInputProps> = ({ deck, resetDecks }) => {
+  const { inputCard, setCard } = useContext(EditDeckContext);
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setCard((prevCard) => ({
@@ -32,25 +27,27 @@ const EditCardInput: React.FC<EditCardInputProps> = ({
   }
 
   return (
-    <div className="inputLine">
-      <input
-        name="front"
-        type="text"
-        placeholder="Front"
-        value={inputCard.front}
-        onChange={handleInputChange}
-      />
-      <input
-        name="back"
-        type="text"
-        placeholder="Back"
-        value={inputCard.back}
-        onChange={handleInputChange}
-      />
-      <button className="add-button" onClick={addCard}>
-        +
-      </button>
-    </div>
+    <li className="list-card">
+      <div className="inputLine">
+        <input
+          name="front"
+          type="text"
+          placeholder="Front"
+          value={inputCard.front}
+          onChange={handleInputChange}
+        />
+        <input
+          name="back"
+          type="text"
+          placeholder="Back"
+          value={inputCard.back}
+          onChange={handleInputChange}
+        />
+        <button className="add-button" onClick={addCard}>
+          +
+        </button>
+      </div>
+    </li>
   );
 };
 
