@@ -12,7 +12,7 @@ const NavButton: React.FC<types.NavButtonProps> = ({
     <Link to={destination}>
       <button className="nav-button">
         <img src={icon} alt={alt} className="nav-button-icon" />
-        <span>{text}</span>
+        {text && <span>{text}</span>}
       </button>
     </Link>
   );

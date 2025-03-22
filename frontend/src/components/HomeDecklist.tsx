@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DecksContext } from "../contexts/DecksContextProvider";
+import HomeDeck from "./HomeDeck";
+import HomeDeckInput from "./HomeDeckInput";
 
-const HomeDecklist: React.FC = () => {
+interface HomeDecklistProps {
+  showInput: boolean;
+  onSubmit: () => void;
+}
+const HomeDecklist: React.FC<HomeDecklistProps> = ({ showInput, onSubmit }) => {
   const { decks } = useContext(DecksContext);
   return (
     <ol>
       {Array.from(decks.entries()).map(([_, deck]) => (
-        <Link to={`/edit/${deck.id}`}>
-          <li key={deck.id}>
-            <span className="text">{deck.name}</span>
-          </li>
-        </Link>
+        <HomeDeck deck={deck} />
       ))}
+      {showInput && <HomeDeckInput onSubmit={onSubmit} focus={showInput} />}
     </ol>
   );
 };

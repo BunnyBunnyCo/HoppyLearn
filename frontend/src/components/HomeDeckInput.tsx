@@ -1,10 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import * as types from "../types";
 import { DecksContext } from "../contexts/DecksContextProvider";
 
-const HomeDeckInput: React.FC = () => {
+interface HomeDeckInputProps {
+  onSubmit: () => void;
+  focus: boolean; // added prop
+}
+
+const HomeDeckInput: React.FC<HomeDeckInputProps> = ({ onSubmit, focus }) => {
   const { setDecks } = useContext(DecksContext);
   const [inputDeck, setDeck] = useState<types.InputDeck>(types.createInputDeck);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (focus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [focus]);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -23,23 +35,26 @@ const HomeDeckInput: React.FC = () => {
         return newDecks;
       });
       setDeck(types.createInputDeck());
+      onSubmit();
     }
   }
 
   return (
-    <div className="inputLine">
+    <li className="list-deck">
       <input
         type="text"
         name="name"
         value={inputDeck.name}
-        placeholder="New Deck?"
+        placeholder="New Deck Name"
         onChange={handleInputChange}
+        ref={inputRef}
       ></input>
-      <button className="add-button" onClick={addDeck}>
-        {" "}
-        +{" "}
-      </button>
-    </div>
+      <div className="button-container">
+        <button className="add-button" onClick={addDeck}>
+          +
+        </button>
+      </div>
+    </li>
   );
 };
 

@@ -1,11 +1,25 @@
+import { useState } from "react";
 import HomeDecklist from "./HomeDecklist";
-import HomeDeckInput from "./HomeDeckInput";
 
 const HomeMenu: React.FC = () => {
+  const [showInput, setShowInput] = useState(false);
+
+  const handleAddButtonClick = () => {
+    setShowInput(true);
+  };
+
+  const handleInputSubmit = () => {
+    setShowInput(false);
+  };
+
   return (
     <div className="decklist">
-      <HomeDecklist />
-      <HomeDeckInput />
+      <HomeDecklist showInput={showInput} onSubmit={handleInputSubmit} />
+      {!showInput && (
+        <button className="add-button" onClick={handleAddButtonClick}>
+          +
+        </button>
+      )}
     </div>
   );
 };
