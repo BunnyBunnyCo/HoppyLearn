@@ -1,6 +1,7 @@
 import React from "react";
 import * as types from "../types";
 import EditCard from "./EditCard";
+import EditCardInput from "./EditCardInput";
 
 interface EditCardListProps {
   deck: types.Deck;
@@ -19,6 +20,7 @@ const EditCardList: React.FC<EditCardListProps> = ({ deck, resetDecks }) => {
           resetDecks={resetDecks}
         />
       ))}
+      <EditCardInput deck={deck} resetDecks={resetDecks} />
     </ol>
   );
 };
