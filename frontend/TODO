@@ -1,0 +1,35 @@
+### V1 TODO
+
+### GENERAL
+
+Reorganize components into folders for each page
+CSS file for each page
+Refactor buttons to have seperate components for different types of buttons
+Add tooltip popups for buttons on hover(explain what the buttons with no text do)
+Hook up to backend
+
+### EDIT PAGE
+
+Redesign display of cards in the edit menu
+Add container for cards in edit menu
+Allow for adding multiple inputs in edit menu (can display more than one at a time)
+
+### STUDY PAGE
+
+Add information about deck being studied (deck name, current card)
+
+### V2 TODO
+
+### REDESIGN SITE LAYOUT
+
+### EXPLORE TAB (public decklists)
+
+### ADD USERS
+
+Sign In/Sign Up Page
+Icon/UI for current user
+Authorization on all backend calls
+
+# MISC
+
+Shake/flash red animation on failed button press
