@@ -1,27 +1,25 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, RefObject } from "react";
 import * as types from "../types";
 import { DecksContext } from "../contexts/DecksContextProvider";
 
 interface HomeDeckInputProps {
   onSubmit: () => void;
-  focus: boolean; // added prop
+  focus: boolean;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
-const HomeDeckInput: React.FC<HomeDeckInputProps> = ({ onSubmit, focus }) => {
+const HomeDeckInput: React.FC<HomeDeckInputProps> = ({
+  onSubmit,
+  focus,
+  inputRef,
+}) => {
   const { setDecks } = useContext(DecksContext);
   const [inputDeck, setDeck] = useState<types.InputDeck>(types.createInputDeck);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (focus && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [focus]);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setDeck((prevCard: types.InputCard) => ({
-      ...prevCard,
+    setDeck((prevDeck) => ({
+      ...prevDeck,
       [name]: value,
     }));
   }
@@ -48,7 +46,7 @@ const HomeDeckInput: React.FC<HomeDeckInputProps> = ({ onSubmit, focus }) => {
         placeholder="New Deck Name"
         onChange={handleInputChange}
         ref={inputRef}
-      ></input>
+      />
       <div className="button-container">
         <button className="add-button" onClick={addDeck}>
           +
