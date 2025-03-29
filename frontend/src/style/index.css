@@ -1,7 +1,7 @@
 :root {
-  --bg-color: hsla(220, 40%, 97%, 1);
-  --bg-panel: hsla(220, 30%, 92%, 1);
-  --bg-panel-hover: hsla(220, 30%, 85%, 1);
+  --bg-color: hsla(220, 30%, 92%, 1);
+  --bg-panel: hsla(220, 40%, 97%, 1);
+  --bg-panel-hover: hsla(0, 0%, 85%, 0.75);
   --bg-panel-active: hsla(220, 30%, 78%, 1);
 
   --text-color: hsla(220, 30%, 20%, 1);
@@ -19,7 +19,7 @@
   --button-neutral-active: hsla(220, 30%, 70%, 1);
   --button-neutral-text: hsla(220, 30%, 20%, 1);
 
-  --border-color: hsla(220, 30%, 70%, 1);
+  --border-color: hsla(0, 0%, 85%, 0.75);
   --border-color-alt: hsla(220, 30%, 50%, 1);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --shadow-hover: rgba(0, 0, 0, 0.2);
@@ -31,6 +31,10 @@
   justify-content: center;
 }
 
+html {
+  font-size: calc(16px + 0.5vw);
+}
+
 .Home {
   text-align: center;
   display: flex;
@@ -39,13 +43,41 @@
   justify-content: center;
 }
 
+.decklist-container {
+  position: relative;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 10px;
+  background-color: var(--bg-panel);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
 .decklist {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0px;
+  overflow-y: auto;
+  justify-content: top;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem 0.8rem;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.add-deck-button {
+  font-size: 1rem;
+  padding: 0.3rem;
+  background: var(--button-accent-bg);
+  color: var(--button-accent-text);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.add-deck-button:hover {
+  background: hsla(140, 80%, 75%, 1);
+}
+
+.add-button:active {
+  background: hsla(140, 80%, 60%, 1);
 }
 
 body {
@@ -78,12 +110,13 @@ code {
 
 h1 {
   margin: 0px;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 h5 {
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 0px;
   padding: 0;
+  font-size: 1rem;
 }
 .header {
   width: 90%;
@@ -126,7 +159,7 @@ h5 {
 }
 
 .header .nav-button {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px var(--shadow-color);
   width: 4rem;
   background: var(--button-neutral-bg);
   color: var(--button-neutral-text);
@@ -166,7 +199,7 @@ button {
   color: var(--button-neutral-text);
   font-size: 1.7rem;
   font-weight: bold;
-  padding: 1em;
+  padding: 1rem;
   gap: 5px;
   border: none;
   border-radius: 5px;
@@ -260,7 +293,6 @@ ol {
   padding: 0.5rem;
   background-color: var(--bg-panel);
   margin-bottom: 2px;
-  border: 3px solid hsla(0, 0%, 85%, 0.75);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -268,22 +300,39 @@ ol {
   box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-.list-deck span {
-  text-align: left;
-}
-
-.list-deck .nav-button-container {
-  display: flex;
-  gap: 0.2rem;
-}
-
 .list-deck:hover {
-  transform: scale(1.02);
+  background-color: var(--bg-panel-hover);
   box-shadow: 0 4px 8px var(--shadow-hover);
 }
 
 .list-deck:active {
   box-shadow: 0 4px 10px var(--shadow-active);
+}
+
+.list-deck .nav-button {
+  background-color: var(--bg-panel-hover);
+}
+
+.list-deck .nav-button:hover {
+  background: var(--button-neutral-bg);
+  box-shadow: 0 2px 8px var(--shadow-hover);
+}
+.list-deck span {
+  text-align: left;
+}
+
+.list-deck .nav-button-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+}
+
+.list-deck:hover .nav-button-container {
+  visibility: visible;
+  opacity: 1;
 }
 
 .list-card {
@@ -323,7 +372,7 @@ ol {
 .flashcard {
   width: 100%;
   aspect-ratio: 2 / 1;
-  max-width: 500px;
+  max-width: 60vw;
   height: auto;
   background: var(--bg-panel);
   border-radius: 10px;
@@ -332,7 +381,7 @@ ol {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: calc(3.5vw);
   font-weight: bold;
   text-align: center;
   margin: 20px;
@@ -357,17 +406,13 @@ ol {
   align-items: center;
 }
 
-.front-text {
-  font-size: 2rem;
-}
-
 .answer-section {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.1s ease-in-out;
 }
 .unfold {
-  max-height: 125px;
+  max-height: 15vw;
   transition: max-height 0.1s ease-in-out;
 }
 
