@@ -20,7 +20,9 @@ const StudyDeckMenu: React.FC = () => {
       <div>
         <h1>Your {deck.name} deck has no Cards!</h1>
         <Link to={`/edit/${deck.id}`}>
-          <h1 className="text">Add Cards!</h1>
+          <button className="card-control-button">
+            <h1 className="text">Add Cards!</h1>
+          </button>
         </Link>
       </div>
     );
