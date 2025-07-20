@@ -1,7 +1,7 @@
 import React, { useContext, useState, RefObject } from "react";
 import * as types from "../../types";
 import { DecksContext } from "../../contexts/DecksContextProvider";
-import styles from "./HomeDeck.module.css";
+import styles from "./styles/HomeDeck.module.css";
 
 interface HomeDeckInputProps {
   onSubmit: () => void;
