@@ -6,14 +6,15 @@ interface EditDeckContextType {
   setCard: React.Dispatch<React.SetStateAction<types.InputCard>>;
 }
 
+interface EditDeckProviderProps {
+  children: ReactNode;
+}
+
+//used as a default value if provider is not used
 export const EditDeckContext = createContext<EditDeckContextType>({
   inputCard: types.createInputCard(),
   setCard: () => {},
 });
-
-interface EditDeckProviderProps {
-  children: ReactNode;
-}
 
 export const EditDeckContextProvider: React.FC<EditDeckProviderProps> = ({
   children,
