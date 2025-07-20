@@ -13,11 +13,12 @@ export interface DecksContextProviderProps {
   children: ReactNode;
 }
 
+//used as a default value if provider is not used
 export const DecksContext = createContext<DecksContextType>({
   decks: new Map(),
-  setDecks: () => {}, // Placeholder function
+  setDecks: () => {},
   cards: new Map(),
-  setCards: () => {}, // Placeholder function
+  setCards: () => {},
 });
 
 // This context is for testing purposes while working on backend
