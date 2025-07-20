@@ -5,7 +5,6 @@
 Refactor buttons to have seperate components for different types of buttons
 One Parent Button Component -> seperate components for different types
 -fix nav buttons
-Move header component outside of main page component so it's consistent across different pages
 
 Refactor context
 Hook up to backend

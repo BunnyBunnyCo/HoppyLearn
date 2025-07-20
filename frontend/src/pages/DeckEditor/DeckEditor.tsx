@@ -4,6 +4,7 @@ import { useDeck } from "../../hooks/useDeck";
 import Header from "../../components/Header";
 import home from "../../assets/home.svg";
 import book from "../../assets/book.svg";
+import styles from "./styles/DeckEditor.module.css";
 
 function DeckEditor() {
   const deck = useDeck();
@@ -14,7 +15,7 @@ function DeckEditor() {
 
   if (!deck) {
     return (
-      <div className="edit-deck">
+      <div className={styles.editDeck}>
         <Header navButtons={navButtons} title="Edit" />
         <h1>Deck Not Found!</h1>
       </div>
@@ -30,7 +31,7 @@ function DeckEditor() {
     />
   );
   return (
-    <div className="edit-deck">
+    <div className={styles.editDeck}>
       <Header navButtons={navButtons} title="Edit" />
       <hr className="divider" />
       <EditDeckMenu />
