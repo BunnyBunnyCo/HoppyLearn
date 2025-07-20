@@ -5,9 +5,10 @@ import { CurrentDeckContext } from "../../contexts/CurrentDeckContextProvider";
 import Flashcard from "./Flashcard";
 import FlashcardControls from "./FlashcardControls";
 import styles from "./styles/FlashcardControls.module.css";
+import * as util from "../../utils/localStoreCalls";
 
 const StudyDeckMenu: React.FC = () => {
-  const { decks } = useContext(DecksContext);
+  const { decks, cards } = useContext(DecksContext);
   const { currentDeck } = useContext(CurrentDeckContext);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -43,8 +44,11 @@ const StudyDeckMenu: React.FC = () => {
   return (
     <>
       <Flashcard
-        key={deck.cards[currentIndex].id}
-        card={deck.cards[currentIndex]}
+        key={deck.cards[currentIndex]}
+        card={
+          cards.get(deck.cards[currentIndex]) ||
+          util.createCard(deck.id, { front: "", back: "" })
+        }
       />
       <FlashcardControls prevCard={prevCard} nextCard={nextCard} />
     </>

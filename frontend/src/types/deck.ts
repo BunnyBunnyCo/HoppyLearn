@@ -1,5 +1,3 @@
-import { Card } from "./card";
-
 export interface InputDeck {
   name: string;
 }
@@ -13,11 +11,11 @@ export interface CurrentDeck {
   id: number;
   name: string;
 }
-// probably just for testing (to make easier to access data)
+
 export interface Deck {
   id: number;
   name: string;
-  cards: Card[];
+  cards: number[];
 }
 
 // This will be a call to backend in future
