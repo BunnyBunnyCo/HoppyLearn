@@ -2,6 +2,7 @@ import React from "react";
 import * as types from "../../types";
 import EditCard from "./EditCard";
 import EditCardInput from "./EditCardInput";
+import styles from "./styles/EditCardList.module.css";
 
 interface EditCardListProps {
   deck: types.Deck;
@@ -10,7 +11,7 @@ interface EditCardListProps {
 
 const EditCardList: React.FC<EditCardListProps> = ({ deck, resetDecks }) => {
   return (
-    <ol>
+    <ol className={styles.editCardList}>
       {deck.cards.map((card, index) => (
         <EditCard
           key={card.id}
