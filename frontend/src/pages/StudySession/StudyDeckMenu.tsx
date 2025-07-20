@@ -4,7 +4,7 @@ import { DecksContext } from "../../contexts/DecksContextProvider";
 import { CurrentDeckContext } from "../../contexts/CurrentDeckContextProvider";
 import Flashcard from "./Flashcard";
 import FlashcardControls from "./FlashcardControls";
-import styles from "./FlashcardControls.module.css";
+import styles from "./styles/FlashcardControls.module.css";
 
 const StudyDeckMenu: React.FC = () => {
   const { decks } = useContext(DecksContext);

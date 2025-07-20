@@ -3,7 +3,7 @@ import { Deck } from "../../types";
 import NavButton from "../../components/NavButton";
 import edit from "../../assets/edit.jpg";
 import book from "../../assets/book.svg";
-import styles from "./HomeDeck.module.css";
+import styles from "./styles/HomeDeck.module.css";
 
 interface HomeDeckProps {
   deck: Deck;

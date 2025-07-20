@@ -3,7 +3,7 @@ import * as types from "../../types";
 import trash from "../../assets/trashcan.svg";
 import upArrow from "../../assets/up-arrow.svg";
 import downArrow from "../../assets/down-arrow.svg";
-import styles from "./EditCard.module.css";
+import styles from "./styles/EditCard.module.css";
 
 interface EditCardProps {
   card: types.Card;

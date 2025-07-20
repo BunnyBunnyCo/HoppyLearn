@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import home from "../../assets/home.svg";
 import edit from "../../assets/edit.jpg";
 import NavButton from "../../components/NavButton";
-import styles from "./StudySession.module.css";
+import styles from "./styles/StudySession.module.css";
 
 function StudySession() {
   const deck = useDeck();
@@ -34,6 +34,7 @@ function StudySession() {
   return (
     <div className={styles.studyDeck}>
       <Header navButtons={navButtons} title="Study" />
+      <hr className="divider" />
       <StudyDeckMenu />
     </div>
   );

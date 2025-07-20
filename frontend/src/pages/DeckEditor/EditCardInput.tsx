@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { EditDeckContext } from "../../contexts/EditDeckContextProvider";
 import * as types from "../../types";
-import styles from "./EditCard.module.css";
+import styles from "./styles/EditCard.module.css";
 
 interface EditCardInputProps {
   deck: types.Deck;

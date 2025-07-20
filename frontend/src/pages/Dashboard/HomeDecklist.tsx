@@ -2,7 +2,7 @@ import React, { useContext, RefObject } from "react";
 import { DecksContext } from "../../contexts/DecksContextProvider";
 import HomeDeck from "./HomeDeck";
 import HomeDeckInput from "./HomeDeckInput";
-import styles from "./Dashboard.module.css";
+import styles from "./styles/Dashboard.module.css";
 
 interface HomeDecklistProps {
   showInput: boolean;

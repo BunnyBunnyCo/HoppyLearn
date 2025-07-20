@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "../../types";
-import styles from "./Flashcard.module.css";
+import styles from "./styles/Flashcard.module.css";
 
 interface FlashcardProps {
   card: Card;

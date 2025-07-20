@@ -32,6 +32,7 @@ function DeckEditor() {
   return (
     <div className="edit-deck">
       <Header navButtons={navButtons} title="Edit" />
+      <hr className="divider" />
       <EditDeckMenu />
     </div>
   );
