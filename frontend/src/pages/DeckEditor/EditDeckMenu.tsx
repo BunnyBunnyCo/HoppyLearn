@@ -7,9 +7,8 @@ import { EditDeckContextProvider } from "../../contexts/EditDeckContextProvider"
 import * as util from "../../utils/localStoreCalls";
 
 const EditDeckMenu: React.FC = () => {
-  const { decks, setDecks } = useContext(DecksContext);
+  const { decks, setDecks, cards, setCards } = useContext(DecksContext);
   const { currentDeck } = useContext(CurrentDeckContext);
-  const [cards, setCards] = useState(util.getCards());
 
   if (!decks.get(currentDeck.id)) {
     return <h1>Deck Not Found!</h1>;
