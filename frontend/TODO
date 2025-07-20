@@ -2,10 +2,12 @@
 
 ### GENERAL
 
-Reorganize components into folders for each page
-CSS file for each page
 Refactor buttons to have seperate components for different types of buttons
-Add tooltip popups for buttons on hover(explain what the buttons with no text do)
+One Parent Button Component -> seperate components for different types
+-fix nav buttons
+Move header component outside of main page component so it's consistent across different pages
+
+Refactor context
 Hook up to backend
 
 ### EDIT PAGE
@@ -16,13 +18,9 @@ Allow for adding multiple inputs in edit menu (can display more than one at a ti
 
 ### STUDY PAGE
 
-Add information about deck being studied (deck name, current card)
+Add information about deck being studied (deck name, current card, number studied)
 
 ### V2 TODO
-
-### REDESIGN SITE LAYOUT
-
-### EXPLORE TAB (public decklists)
 
 ### ADD USERS
 
@@ -30,6 +28,16 @@ Sign In/Sign Up Page
 Icon/UI for current user
 Authorization on all backend calls
 
+### V3 TODO
+
+### REDESIGN SITE LAYOUT
+
 # MISC
 
+Add tooltip popups for buttons on hover(explain what the buttons with no text do)
 Shake/flash red animation on failed button press
+
+### FEATURE IDEAS
+
+EXPLORE TAB (public decklists)
+Word Games

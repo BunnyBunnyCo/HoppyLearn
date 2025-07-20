@@ -1,8 +1,9 @@
 import React from "react";
-import * as types from "../types";
-import trash from "../assets/trashcan.svg";
-import upArrow from "../assets/up-arrow.svg";
-import downArrow from "../assets/down-arrow.svg";
+import * as types from "../../types";
+import trash from "../../assets/trashcan.svg";
+import upArrow from "../../assets/up-arrow.svg";
+import downArrow from "../../assets/down-arrow.svg";
+import styles from "./EditCard.module.css";
 
 interface EditCardProps {
   card: types.Card;
@@ -43,18 +44,18 @@ const EditCard: React.FC<EditCardProps> = ({
   }
 
   return (
-    <li className="list-card">
-      <span className="text">
+    <li className={styles.listCard}>
+      <span className={styles.text}>
         {card.front} | {card.back}
       </span>
-      <button className="delete-button" onClick={deleteCard}>
-        <img src={trash} alt="Delete" className="button-icon" />
+      <button className={styles.deleteButton} onClick={deleteCard}>
+        <img src={trash} alt="Delete" className={styles.buttonIcon} />
       </button>
-      <button className="move-button" onClick={moveCardUp}>
-        <img src={upArrow} alt="Up" className="button-icon" />
+      <button className={styles.moveButton} onClick={moveCardUp}>
+        <img src={upArrow} alt="Up" className={styles.buttonIcon} />
       </button>
-      <button className="move-button" onClick={moveCardDown}>
-        <img src={downArrow} alt="Down" className="button-icon" />
+      <button className={styles.moveButton} onClick={moveCardDown}>
+        <img src={downArrow} alt="Down" className={styles.buttonIcon} />
       </button>
     </li>
   );

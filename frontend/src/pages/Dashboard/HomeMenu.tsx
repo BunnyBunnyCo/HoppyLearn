@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import HomeDecklist from "./HomeDecklist";
 import HomeMenuHeader from "./HomeMenuHeader";
+import styles from "./Dashboard.module.css";
 
 const HomeMenu: React.FC = () => {
   const [showInput, setShowInput] = useState(false);
@@ -24,7 +25,7 @@ const HomeMenu: React.FC = () => {
   };
 
   return (
-    <div className="decklist-container">
+    <div className={styles.decklistContainer}>
       <HomeMenuHeader handleAddButtonClick={handleAddButtonClick} />
       <HomeDecklist
         showInput={showInput}

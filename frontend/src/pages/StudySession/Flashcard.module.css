@@ -1,0 +1,56 @@
+.flashcard {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  max-width: 60vw;
+  height: auto;
+  background: var(--bg-panel);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(3.5vw);
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.flashcard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px var(--shadow-hover);
+}
+
+.flashcard:active {
+  box-shadow: 0 6px 14px var(--shadow-active);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.frontText {
+  margin: 0;
+}
+
+.answerSection {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease-in-out;
+}
+
+.unfold {
+  max-height: 15vw;
+  transition: max-height 0.1s ease-in-out;
+}
+
+.backText {
+  padding-top: 5px;
+  margin: 0;
+}

@@ -1,6 +1,7 @@
-import { useContext, useState, RefObject } from "react";
-import * as types from "../types";
-import { DecksContext } from "../contexts/DecksContextProvider";
+import React, { useContext, useState, RefObject } from "react";
+import * as types from "../../types";
+import { DecksContext } from "../../contexts/DecksContextProvider";
+import styles from "./HomeDeck.module.css";
 
 interface HomeDeckInputProps {
   onSubmit: () => void;
@@ -38,7 +39,7 @@ const HomeDeckInput: React.FC<HomeDeckInputProps> = ({
   }
 
   return (
-    <li className="list-deck">
+    <li className={styles.listDeck}>
       <input
         type="text"
         name="name"
@@ -47,8 +48,8 @@ const HomeDeckInput: React.FC<HomeDeckInputProps> = ({
         onChange={handleInputChange}
         ref={inputRef}
       />
-      <div className="button-container">
-        <button className="add-button" onClick={addDeck}>
+      <div className="buttonContainer">
+        <button className="addButton" onClick={addDeck}>
           +
         </button>
       </div>

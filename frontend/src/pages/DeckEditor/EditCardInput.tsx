@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { EditDeckContext } from "../contexts/EditDeckContextProvider";
-import * as types from "../types";
+import { EditDeckContext } from "../../contexts/EditDeckContextProvider";
+import * as types from "../../types";
+import styles from "./EditCard.module.css";
 
 interface EditCardInputProps {
   deck: types.Deck;
@@ -9,6 +10,7 @@ interface EditCardInputProps {
 
 const EditCardInput: React.FC<EditCardInputProps> = ({ deck, resetDecks }) => {
   const { inputCard, setCard } = useContext(EditDeckContext);
+
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setCard((prevCard) => ({
@@ -27,7 +29,7 @@ const EditCardInput: React.FC<EditCardInputProps> = ({ deck, resetDecks }) => {
   }
 
   return (
-    <li className="list-card">
+    <li className={styles.listCard}>
       <div className="inputLine">
         <input
           name="front"
@@ -43,7 +45,7 @@ const EditCardInput: React.FC<EditCardInputProps> = ({ deck, resetDecks }) => {
           value={inputCard.back}
           onChange={handleInputChange}
         />
-        <button className="add-button" onClick={addCard}>
+        <button className="addButton" onClick={addCard}>
           +
         </button>
       </div>

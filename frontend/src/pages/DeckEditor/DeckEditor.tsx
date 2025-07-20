@@ -1,11 +1,11 @@
-import EditDeckMenu from "../components/EditDeckMenu";
-import NavButton from "../components/NavButton";
-import { useDeck } from "../hooks/useDeck";
-import Header from "../components/Header";
-import home from "../assets/home.svg";
-import book from "../assets/book.svg";
+import EditDeckMenu from "./EditDeckMenu";
+import NavButton from "../../components/NavButton";
+import { useDeck } from "../../hooks/useDeck";
+import Header from "../../components/Header";
+import home from "../../assets/home.svg";
+import book from "../../assets/book.svg";
 
-function EditDeck() {
+function DeckEditor() {
   const deck = useDeck();
 
   const navButtons = [
@@ -37,4 +37,4 @@ function EditDeck() {
   );
 }
 
-export default EditDeck;
+export default DeckEditor;

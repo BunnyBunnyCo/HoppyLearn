@@ -1,0 +1,35 @@
+.header {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.headerTitle {
+  grid-column: 2;
+  text-align: center;
+  align-self: end;
+}
+
+.navButtonContainer {
+  display: flex;
+  gap: 8px;
+  align-self: end;
+  justify-self: end;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+.navButton {
+  box-shadow: 0 2px 8px var(--shadow-color);
+  width: 4rem;
+  background: var(--button-neutral-bg);
+  color: var(--button-neutral-text);
+  transition: all 0.2s ease-in-out;
+}
+
+.navButton:hover {
+  background-color: var(--button-neutral-hover);
+}

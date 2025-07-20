@@ -1,11 +1,12 @@
-import { useDeck } from "../hooks/useDeck";
-import StudyDeckMenu from "../components/StudyDeckMenu";
-import Header from "../components/Header";
-import home from "../assets/home.svg";
-import edit from "../assets/edit.jpg";
-import NavButton from "../components/NavButton";
+import { useDeck } from "../../hooks/useDeck";
+import StudyDeckMenu from "./StudyDeckMenu";
+import Header from "../../components/Header";
+import home from "../../assets/home.svg";
+import edit from "../../assets/edit.jpg";
+import NavButton from "../../components/NavButton";
+import styles from "./StudySession.module.css";
 
-function StudyDeck() {
+function StudySession() {
   const deck = useDeck();
 
   const navButtons = [
@@ -14,7 +15,7 @@ function StudyDeck() {
 
   if (!deck) {
     return (
-      <div className="study-deck">
+      <div className={styles.studyDeck}>
         <Header navButtons={navButtons} title="Study" />
         <h1>Deck Not Found!</h1>
       </div>
@@ -31,11 +32,11 @@ function StudyDeck() {
   );
 
   return (
-    <div className="study-deck">
+    <div className={styles.studyDeck}>
       <Header navButtons={navButtons} title="Study" />
       <StudyDeckMenu />
     </div>
   );
 }
 
-export default StudyDeck;
+export default StudySession;

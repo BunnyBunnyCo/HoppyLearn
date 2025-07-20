@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DecksContext } from "../contexts/DecksContextProvider";
 import { CurrentDeckContext } from "../contexts/CurrentDeckContextProvider";
-import * as util from "../util/helpers";
+import * as util from "../utils/helpers";
 
 export function useDeck() {
   const { decks } = useContext(DecksContext);

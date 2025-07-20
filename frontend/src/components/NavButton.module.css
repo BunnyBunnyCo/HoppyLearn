@@ -1,0 +1,31 @@
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 2rem;
+  padding: 2px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 5px;
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  color: var(--button-neutral-text);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.navButton:hover {
+  background-color: var(--button-neutral-hover);
+}
+
+.navButtonIcon {
+  height: 60%;
+  padding: 2px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.navButton span {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}

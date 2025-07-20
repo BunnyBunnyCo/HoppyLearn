@@ -1,0 +1,48 @@
+.home {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.decklistContainer {
+  position: relative;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 10px;
+  background-color: var(--bg-panel);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.decklist {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  justify-content: top;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem 0.8rem;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.addDeckButton {
+  font-size: 1rem;
+  padding: 0.3rem;
+  background: var(--button-accent-bg);
+  color: var(--button-accent-text);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.addDeckButton:hover {
+  background: hsla(140, 80%, 75%, 1);
+}
+
+.addDeckButton:active {
+  background: hsla(140, 80%, 60%, 1);
+}

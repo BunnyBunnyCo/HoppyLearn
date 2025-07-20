@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { DecksContext } from "../contexts/DecksContextProvider";
-import { CurrentDeckContext } from "../contexts/CurrentDeckContextProvider";
+import { DecksContext } from "../../contexts/DecksContextProvider";
+import { CurrentDeckContext } from "../../contexts/CurrentDeckContextProvider";
 import Flashcard from "./Flashcard";
 import FlashcardControls from "./FlashcardControls";
+import styles from "./FlashcardControls.module.css";
 
 const StudyDeckMenu: React.FC = () => {
   const { decks } = useContext(DecksContext);
@@ -20,7 +21,7 @@ const StudyDeckMenu: React.FC = () => {
       <div>
         <h1>Your {deck.name} deck has no Cards!</h1>
         <Link to={`/edit/${deck.id}`}>
-          <button className="card-control-button">
+          <button className={styles.cardControlButton}>
             <h1 className="text">Add Cards!</h1>
           </button>
         </Link>

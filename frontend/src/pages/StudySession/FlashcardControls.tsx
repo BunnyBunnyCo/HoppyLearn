@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./FlashcardControls.module.css";
 
 interface FlashcardControlsProps {
   prevCard: () => void;
@@ -10,11 +11,11 @@ const FlashcardControls: React.FC<FlashcardControlsProps> = ({
   nextCard,
 }) => {
   return (
-    <div className="flashcard-controls">
-      <button className="card-control-button" onClick={prevCard}>
+    <div className={styles.flashcardControls}>
+      <button className={styles.cardControlButton} onClick={prevCard}>
         Prev Card
       </button>
-      <button className="card-control-button" onClick={nextCard}>
+      <button className={styles.cardControlButton} onClick={nextCard}>
         Next Card
       </button>
     </div>

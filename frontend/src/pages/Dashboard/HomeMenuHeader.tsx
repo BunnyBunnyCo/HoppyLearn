@@ -1,8 +1,10 @@
 import React from "react";
+import styles from "./Dashboard.module.css";
 
 interface HomeMenuHeaderProps {
   handleAddButtonClick: () => void;
 }
+
 const HomeMenuHeader: React.FC<HomeMenuHeaderProps> = ({
   handleAddButtonClick,
 }) => {
@@ -17,7 +19,7 @@ const HomeMenuHeader: React.FC<HomeMenuHeaderProps> = ({
       }}
     >
       <span style={{ fontSize: "1rem", fontWeight: "bold" }}>My Decks</span>
-      <button className="add-deck-button" onClick={handleAddButtonClick}>
+      <button className={styles.addDeckButton} onClick={handleAddButtonClick}>
         Add Deck
       </button>
     </div>

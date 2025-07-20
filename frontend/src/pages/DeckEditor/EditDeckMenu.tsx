@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { DecksContext } from "../contexts/DecksContextProvider";
-import { CurrentDeckContext } from "../contexts/CurrentDeckContextProvider";
-import * as types from "../types";
+import { DecksContext } from "../../contexts/DecksContextProvider";
+import { CurrentDeckContext } from "../../contexts/CurrentDeckContextProvider";
+import * as types from "../../types";
 import EditCardList from "./EditCardList";
-import { EditDeckContextProvider } from "../contexts/EditDeckContextProvider";
+import { EditDeckContextProvider } from "../../contexts/EditDeckContextProvider";
 
 const EditDeckMenu: React.FC = () => {
   const { decks, setDecks } = useContext(DecksContext);

@@ -1,16 +1,19 @@
-import { Deck } from "../types";
-import NavButton from "./NavButton";
-import edit from "../assets/edit.jpg";
-import book from "../assets/book.svg";
+import React from "react";
+import { Deck } from "../../types";
+import NavButton from "../../components/NavButton";
+import edit from "../../assets/edit.jpg";
+import book from "../../assets/book.svg";
+import styles from "./HomeDeck.module.css";
 
 interface HomeDeckProps {
   deck: Deck;
 }
+
 const HomeDeck: React.FC<HomeDeckProps> = ({ deck }) => {
   return (
-    <li key={deck.id} className="list-deck">
-      <span className="text">{deck.name}</span>
-      <div className="nav-button-container">
+    <li key={deck.id} className={styles.listDeck}>
+      <span className={styles.text}>{deck.name}</span>
+      <div className={styles.navButtonContainer}>
         <NavButton
           icon={book}
           text=""

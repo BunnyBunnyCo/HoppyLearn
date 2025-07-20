@@ -1,7 +1,8 @@
-import { useContext, RefObject } from "react";
-import { DecksContext } from "../contexts/DecksContextProvider";
+import React, { useContext, RefObject } from "react";
+import { DecksContext } from "../../contexts/DecksContextProvider";
 import HomeDeck from "./HomeDeck";
 import HomeDeckInput from "./HomeDeckInput";
+import styles from "./Dashboard.module.css";
 
 interface HomeDecklistProps {
   showInput: boolean;
@@ -16,9 +17,9 @@ const HomeDecklist: React.FC<HomeDecklistProps> = ({
 }) => {
   const { decks } = useContext(DecksContext);
   return (
-    <ol className="decklist">
+    <ol className={styles.decklist}>
       {Array.from(decks.entries()).map(([_, deck]) => (
-        <HomeDeck deck={deck} />
+        <HomeDeck key={deck.id} deck={deck} />
       ))}
       {showInput && (
         <HomeDeckInput
