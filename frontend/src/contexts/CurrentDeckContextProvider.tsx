@@ -10,6 +10,7 @@ export interface CurrentDeckContextProviderProps {
   children: ReactNode;
 }
 
+//used as a default value if provider is not used
 export const CurrentDeckContext = createContext<CurrentDeckContextType>({
   currentDeck: { id: 0, name: "" },
   setCurrentDeck: () => {},
