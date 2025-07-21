@@ -2,6 +2,7 @@ import React, { useContext, useState, RefObject } from "react";
 import * as types from "../../types";
 import { DecksContext } from "../../contexts/DecksContextProvider";
 import styles from "./styles/HomeDeck.module.css";
+import * as util from "../../utils/localStoreCalls";
 
 interface HomeDeckInputProps {
   onSubmit: () => void;
@@ -27,7 +28,7 @@ const HomeDeckInput: React.FC<HomeDeckInputProps> = ({
 
   function addDeck() {
     if (inputDeck.name.trim() !== "") {
-      const newDeck = types.createDeck(inputDeck);
+      const newDeck = util.createDeck(inputDeck);
       setDecks((prevDecks) => {
         const newDecks = new Map(prevDecks);
         newDecks.set(newDeck.id, newDeck);

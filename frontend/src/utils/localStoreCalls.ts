@@ -36,16 +36,16 @@ export function getDecks(): Map<number, types.Deck> {
   return decks;
 }
 
-export function createDeck(inputDeck: types.InputDeck): Map<number, types.Deck> {
-  const decks = getDecks();
+export function createDeck(inputDeck: types.InputDeck): types.Deck {
   const deck = {
     name: inputDeck.name,
     id: Math.floor(Math.random() * (1000000000 - 3 + 1)) + 3, //TEMP FOR TESTING
     cards: [],
   };
+  const decks = getDecks();
   decks.set(deck.id, deck);
   window.localStorage.setItem("BUNNY_DECKS", JSON.stringify(Array.from(decks.entries())));
-  return decks;
+  return deck;
 }
 
 export function updateDeck(decks: Map<number, types.Deck>, updatedDeck: types.Deck): types.Deck {
