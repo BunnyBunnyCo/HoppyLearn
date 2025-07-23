@@ -16,6 +16,7 @@ public class InMemoryDeckRepository implements DeckRepository {
 
     // Thread-safe storage for decks
     private final Map<Long, Deck> storage = new ConcurrentHashMap<>();
+    private final Map<String, Deck> deckNames = new ConcurrentHashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     @Override
@@ -29,6 +30,7 @@ public class InMemoryDeckRepository implements DeckRepository {
         }
 
         storage.put(deck.getId(), deck);
+        deckNames.put(deck.getDeckName().trim(), deck);
         return deck;
     }
 
@@ -59,6 +61,14 @@ public class InMemoryDeckRepository implements DeckRepository {
             return false;
         }
         return storage.containsKey(id);
+    }
+
+    @Override
+    public boolean existsByName(String deckName) {
+        if (deckName == null || deckName.trim().isEmpty()) {
+            return false;
+        }
+        return deckNames.containsKey(deckName.trim());
     }
 
     @Override

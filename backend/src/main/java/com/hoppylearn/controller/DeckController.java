@@ -32,7 +32,7 @@ public class DeckController {
             DeckResponse response = new DeckResponse();
             response.setId(deck.getId().intValue());
             response.setDeckName(deck.getDeckName());
-
+            response.setCardIds(deck.getCardIds());
             URI location = URI.create("/v1/deck/" + deck.getId());
             return ResponseEntity.created(location).body(response);
         } catch (IllegalArgumentException e) {
@@ -48,6 +48,7 @@ public class DeckController {
             DeckResponse response = new DeckResponse();
             response.setId(deck.get().getId().intValue());
             response.setDeckName(deck.get().getDeckName());
+            response.setCardIds(deck.get().getCardIds());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();

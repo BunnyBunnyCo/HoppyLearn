@@ -28,18 +28,11 @@ public class InMemoryDeckService implements DeckService {
             throw new IllegalArgumentException("Deck name cannot be null or empty");
         }
 
-        Deck deck = new Deck(deckName.trim());
-        return deckRepository.save(deck);
-    }
-
-    @Override
-    public Deck createDeck(String deckName, String description) {
-        if (deckName == null || deckName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Deck name cannot be null or empty");
+        if (this.deckExists(deckName)) {
+            throw new IllegalArgumentException("Deck name already exists");
         }
 
         Deck deck = new Deck(deckName.trim());
-
         return deckRepository.save(deck);
     }
 
@@ -57,22 +50,6 @@ public class InMemoryDeckService implements DeckService {
     }
 
     @Override
-    public Optional<Deck> updateDeck(Long id, String deckName) {
-        if (id == null || deckName == null || deckName.trim().isEmpty()) {
-            return Optional.empty();
-        }
-
-        Optional<Deck> existingDeck = deckRepository.findById(id);
-        if (existingDeck.isPresent()) {
-            Deck deck = existingDeck.get();
-            deck.setDeckName(deckName.trim());
-            return Optional.of(deckRepository.save(deck));
-        }
-
-        return Optional.empty();
-    }
-
-    @Override
     public boolean deleteDeck(Long id) {
         if (id == null) {
             return false;
@@ -86,5 +63,10 @@ public class InMemoryDeckService implements DeckService {
             return false;
         }
         return deckRepository.existsById(id);
+    }
+
+    @Override
+    public boolean deckExists(String deckName) {
+        return deckRepository.existsByName(deckName);
     }
 }

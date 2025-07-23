@@ -47,6 +47,14 @@ public interface DeckRepository {
     boolean existsById(Long id);
 
     /**
+     * Check if a deck exists by name
+     * 
+     * @param deckName The name of the deck
+     * @return true if deck with the given name exists, false otherwise
+     */
+    boolean existsByName(String deckName);
+
+    /**
      * Count total number of decks
      * 
      * @return Number of decks
