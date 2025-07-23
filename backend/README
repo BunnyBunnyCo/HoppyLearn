@@ -1,0 +1,14 @@
+how to run
+
+USING DOCKER
+
+1. run "mvn clean package" -> This generates jar under target directory
+2. run "docker build -t my-java-app ."-> create an image in local
+3. run "docker images" -> verify my-java-app image is created
+4. run "docker run -d -p 8080:8080 my-java-app"
+5. hit http://localhost:8080/swagger-ui/index.html to verify localhost is available
+
+create mock response and request
+-> how to test: curl -X POST http://localhost:8080/v1/deck -H "Content-Type: application/json" -d '{"deckName": "TEST"}'
+enable actuator
+-> how to test: http://localhost:8080/actuator/health after run the application
