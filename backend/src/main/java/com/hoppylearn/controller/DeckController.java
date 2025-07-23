@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1")
@@ -59,14 +59,15 @@ public class DeckController {
     public ResponseEntity<List<DeckResponse>> handleGetAll() {
         List<Deck> decks = deckService.getAllDecks();
 
-        List<DeckResponse> responses = decks.stream()
-                .map(deck -> {
-                    DeckResponse response = new DeckResponse();
-                    response.setId(deck.getId().intValue());
-                    response.setDeckName(deck.getDeckName());
-                    return response;
-                })
-                .collect(Collectors.toList());
+        List<DeckResponse> responses = new ArrayList<>();
+
+        for (Deck deck : decks) {
+            DeckResponse response = new DeckResponse();
+            response.setId(deck.getId().intValue());
+            response.setDeckName(deck.getDeckName());
+            response.setCardIds(deck.getCardIds());
+            responses.add(response);
+        }
 
         return ResponseEntity.ok(responses);
     }
