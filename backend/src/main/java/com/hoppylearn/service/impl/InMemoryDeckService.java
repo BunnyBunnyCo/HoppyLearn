@@ -34,11 +34,19 @@ public class InMemoryDeckService implements DeckService {
     }
 
     @Override
-    public Deck getDeckById(Long id) {
+    public Deck getDeck(Long id) {
         if (id == null) {
             return null;
         }
         return deckRepository.getDeck(id);
+    }
+
+    @Override
+    public Deck getDeck(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+        return deckRepository.getDeck(name.trim());
     }
 
     @Override

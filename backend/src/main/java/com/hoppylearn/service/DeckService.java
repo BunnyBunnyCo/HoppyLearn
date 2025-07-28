@@ -22,7 +22,15 @@ public interface DeckService {
      * @param id The deck ID
      * @return Optional containing the deck if found
      */
-    Deck getDeckById(Long id);
+    Deck getDeck(Long id);
+
+    /**
+     * Get a deck by name
+     * 
+     * @param name The name of the deck
+     * @return Optional containing the deck if found
+     */
+    Deck getDeck(String name);
 
     /**
      * Get all decks

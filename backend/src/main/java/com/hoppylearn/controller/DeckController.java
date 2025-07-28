@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1")
@@ -39,17 +38,28 @@ public class DeckController {
         }
     }
 
-    @GetMapping("/deck/{id}")
-    public ResponseEntity<DeckResponse> handleGet(@PathVariable Long id) {
-        Deck deck = deckService.getDeckById(id);
+    @GetMapping("/deck")
+    public ResponseEntity<DeckResponse> handleGet(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String name) {
+        Deck deck = null;
+        // Check for ambiguous parameters
+        if (id != null && name != null) {
+            return ResponseEntity.badRequest().build();
+        }
+        // Lookup by ID
+        if (id != null) {
+            deck = deckService.getDeck(id);
+        } else {
+            deck = deckService.getDeck(name);
+        }
         if (deck == null) {
             return ResponseEntity.notFound().build();
         }
-        DeckResponse response = new DeckResponse(deck);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new DeckResponse(deck));
     }
 
-    @GetMapping("/deck")
+    @GetMapping("/decks")
     public ResponseEntity<List<DeckResponse>> handleGetAll() {
         List<Deck> decks = deckService.getAllDecks();
         List<DeckResponse> responses = new ArrayList<>();
