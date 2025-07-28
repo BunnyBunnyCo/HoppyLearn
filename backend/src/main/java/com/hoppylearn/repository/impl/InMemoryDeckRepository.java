@@ -16,11 +16,11 @@ public class InMemoryDeckRepository implements DeckRepository {
 
     // Thread-safe storage for decks
     private final Map<Long, Deck> storage = new ConcurrentHashMap<>();
-    private final Map<String, Deck> deckNames = new ConcurrentHashMap<>();
+    private final Map<String, Deck> names = new ConcurrentHashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     @Override
-    public Deck save(Deck deck) {
+    public Deck saveDeck(Deck deck) {
         if (deck == null) {
             throw new IllegalArgumentException("Deck cannot be null");
         }
@@ -30,25 +30,33 @@ public class InMemoryDeckRepository implements DeckRepository {
         }
 
         storage.put(deck.getId(), deck);
-        deckNames.put(deck.getDeckName().trim(), deck);
+        names.put(deck.getDeckName().trim(), deck);
         return deck;
     }
 
     @Override
-    public Optional<Deck> findById(Long id) {
+    public Deck getDeck(Long id) {
         if (id == null) {
-            return Optional.empty();
+            return null;
         }
-        return Optional.ofNullable(storage.get(id));
+        return storage.get(id);
     }
 
     @Override
-    public List<Deck> findAll() {
+    public Deck getDeck(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+        return names.get(name.trim());
+    }
+
+    @Override
+    public List<Deck> getAllDecks() {
         return new ArrayList<>(storage.values());
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteDeck(Long id) {
         if (id == null) {
             return false;
         }
@@ -56,7 +64,7 @@ public class InMemoryDeckRepository implements DeckRepository {
     }
 
     @Override
-    public boolean existsById(Long id) {
+    public boolean deckExists(Long id) {
         if (id == null) {
             return false;
         }
@@ -64,11 +72,11 @@ public class InMemoryDeckRepository implements DeckRepository {
     }
 
     @Override
-    public boolean existsByName(String deckName) {
-        if (deckName == null || deckName.trim().isEmpty()) {
+    public boolean deckExists(String name) {
+        if (name == null || name.trim().isEmpty()) {
             return false;
         }
-        return deckNames.containsKey(deckName.trim());
+        return names.containsKey(name.trim());
     }
 
     @Override

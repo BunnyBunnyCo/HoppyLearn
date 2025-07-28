@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-/**
- * Implementation of DeckService that handles business logic for Decks
- */
+// Implementation of DeckService that handles business logic for Decks
 @Service
 public class InMemoryDeckService implements DeckService {
 
@@ -23,30 +20,30 @@ public class InMemoryDeckService implements DeckService {
     }
 
     @Override
-    public Deck createDeck(String deckName) {
-        if (deckName == null || deckName.trim().isEmpty()) {
+    public Deck createDeck(String name) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Deck name cannot be null or empty");
         }
 
-        if (this.deckExists(deckName)) {
+        if (this.deckExists(name)) {
             throw new IllegalArgumentException("Deck name already exists");
         }
 
-        Deck deck = new Deck(deckName.trim());
-        return deckRepository.save(deck);
+        Deck deck = new Deck(name.trim());
+        return deckRepository.saveDeck(deck);
     }
 
     @Override
-    public Optional<Deck> getDeckById(Long id) {
+    public Deck getDeckById(Long id) {
         if (id == null) {
-            return Optional.empty();
+            return null;
         }
-        return deckRepository.findById(id);
+        return deckRepository.getDeck(id);
     }
 
     @Override
     public List<Deck> getAllDecks() {
-        return deckRepository.findAll();
+        return deckRepository.getAllDecks();
     }
 
     @Override
@@ -54,7 +51,7 @@ public class InMemoryDeckService implements DeckService {
         if (id == null) {
             return false;
         }
-        return deckRepository.deleteById(id);
+        return deckRepository.deleteDeck(id);
     }
 
     @Override
@@ -62,11 +59,11 @@ public class InMemoryDeckService implements DeckService {
         if (id == null) {
             return false;
         }
-        return deckRepository.existsById(id);
+        return deckRepository.deckExists(id);
     }
 
     @Override
-    public boolean deckExists(String deckName) {
-        return deckRepository.existsByName(deckName);
+    public boolean deckExists(String name) {
+        return deckRepository.deckExists(name);
     }
 }

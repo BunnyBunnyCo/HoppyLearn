@@ -28,11 +28,10 @@ public class DeckController {
     public ResponseEntity<DeckResponse> handlePost(@RequestBody DeckRequest deckRequest) {
         try {
             Deck deck = deckService.createDeck(deckRequest.getDeckName());
-
-            DeckResponse response = new DeckResponse();
-            response.setId(deck.getId().intValue());
-            response.setDeckName(deck.getDeckName());
-            response.setCardIds(deck.getCardIds());
+            if (deck == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            DeckResponse response = new DeckResponse(deck);
             URI location = URI.create("/v1/deck/" + deck.getId());
             return ResponseEntity.created(location).body(response);
         } catch (IllegalArgumentException e) {
@@ -42,40 +41,28 @@ public class DeckController {
 
     @GetMapping("/deck/{id}")
     public ResponseEntity<DeckResponse> handleGet(@PathVariable Long id) {
-        Optional<Deck> deck = deckService.getDeckById(id);
-
-        if (deck.isPresent()) {
-            DeckResponse response = new DeckResponse();
-            response.setId(deck.get().getId().intValue());
-            response.setDeckName(deck.get().getDeckName());
-            response.setCardIds(deck.get().getCardIds());
-            return ResponseEntity.ok(response);
-        } else {
+        Deck deck = deckService.getDeckById(id);
+        if (deck == null) {
             return ResponseEntity.notFound().build();
         }
+        DeckResponse response = new DeckResponse(deck);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/deck")
     public ResponseEntity<List<DeckResponse>> handleGetAll() {
         List<Deck> decks = deckService.getAllDecks();
-
         List<DeckResponse> responses = new ArrayList<>();
-
         for (Deck deck : decks) {
-            DeckResponse response = new DeckResponse();
-            response.setId(deck.getId().intValue());
-            response.setDeckName(deck.getDeckName());
-            response.setCardIds(deck.getCardIds());
+            DeckResponse response = new DeckResponse(deck);
             responses.add(response);
         }
-
         return ResponseEntity.ok(responses);
     }
 
     @DeleteMapping("/deck/{id}")
     public ResponseEntity<String> handleDelete(@PathVariable Long id) {
         boolean deleted = deckService.deleteDeck(id);
-
         if (deleted) {
             return ResponseEntity.ok("Deck deleted successfully");
         } else {

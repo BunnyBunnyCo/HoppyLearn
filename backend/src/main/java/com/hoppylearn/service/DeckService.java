@@ -2,7 +2,6 @@ package com.hoppylearn.service;
 
 import com.hoppylearn.model.entity.Deck;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service interface for business logic related to Decks
@@ -12,10 +11,10 @@ public interface DeckService {
     /**
      * Create a new deck
      * 
-     * @param deckName The name of the deck
+     * @param name The name of the deck
      * @return The created deck
      */
-    Deck createDeck(String deckName);
+    Deck createDeck(String name);
 
     /**
      * Get a deck by ID
@@ -23,7 +22,7 @@ public interface DeckService {
      * @param id The deck ID
      * @return Optional containing the deck if found
      */
-    Optional<Deck> getDeckById(Long id);
+    Deck getDeckById(Long id);
 
     /**
      * Get all decks
@@ -51,8 +50,8 @@ public interface DeckService {
     /**
      * Check if deck exists by name
      * 
-     * @param deckName The name of the deck
+     * @param name The name of the deck
      * @return true if exists, false otherwise
      */
-    boolean deckExists(String deckName);
+    boolean deckExists(String name);
 }

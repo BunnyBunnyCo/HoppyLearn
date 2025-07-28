@@ -2,7 +2,6 @@ package com.hoppylearn.repository;
 
 import com.hoppylearn.model.entity.Deck;
 import java.util.List;
-import java.util.Optional;
 
 // Interface for different implementations of storage
 public interface DeckRepository {
@@ -13,7 +12,7 @@ public interface DeckRepository {
      * @param deck The deck to save
      * @return The saved deck with generated ID
      */
-    Deck save(Deck deck);
+    Deck saveDeck(Deck deck);
 
     /**
      * Find a deck by its ID
@@ -21,14 +20,22 @@ public interface DeckRepository {
      * @param id The deck ID
      * @return Optional containing the deck if found, empty otherwise
      */
-    Optional<Deck> findById(Long id);
+    Deck getDeck(Long id);
+
+    /**
+     * Find a deck by its ID
+     * 
+     * @param id The deck ID
+     * @return Optional containing the deck if found, empty otherwise
+     */
+    Deck getDeck(String name);
 
     /**
      * Get all decks
      * 
      * @return List of all decks
      */
-    List<Deck> findAll();
+    List<Deck> getAllDecks();
 
     /**
      * Delete a deck by ID
@@ -36,7 +43,7 @@ public interface DeckRepository {
      * @param id The deck ID to delete
      * @return true if deck was deleted, false if not found
      */
-    boolean deleteById(Long id);
+    boolean deleteDeck(Long id);
 
     /**
      * Check if a deck exists by ID
@@ -44,15 +51,15 @@ public interface DeckRepository {
      * @param id The deck ID
      * @return true if deck exists, false otherwise
      */
-    boolean existsById(Long id);
+    boolean deckExists(Long id);
 
     /**
      * Check if a deck exists by name
      * 
-     * @param deckName The name of the deck
+     * @param name The name of the deck
      * @return true if deck with the given name exists, false otherwise
      */
-    boolean existsByName(String deckName);
+    boolean deckExists(String name);
 
     /**
      * Count total number of decks
