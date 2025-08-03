@@ -1,4 +1,4 @@
-package com.hoppylearn.exception;
+package com.hoppylearn.model.response;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

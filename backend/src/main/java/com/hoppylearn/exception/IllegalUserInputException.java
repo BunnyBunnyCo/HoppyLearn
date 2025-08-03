@@ -1,6 +1,8 @@
 package com.hoppylearn.exception;
 
-public class IllegalUserInputException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class IllegalUserInputException extends ApiRequestException {
     public IllegalUserInputException(String message) {
         super(message);
     }
@@ -9,4 +11,13 @@ public class IllegalUserInputException extends RuntimeException {
         super(message, cause);
     }
 
+    @Override
+    public String getError() {
+        return "Invalid request parameters";
+    }
+
+    @Override
+    public HttpStatus getHttpStatus() {
+        return HttpStatus.BAD_REQUEST;
+    }
 }

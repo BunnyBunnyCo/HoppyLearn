@@ -1,6 +1,5 @@
 package com.hoppylearn.controller;
 
-import com.hoppylearn.exception.ApiRequestException;
 import com.hoppylearn.exception.IllegalUserInputException;
 import com.hoppylearn.exception.ResourceNotFoundException;
 import com.hoppylearn.model.entity.Deck;
@@ -64,7 +63,7 @@ public class DeckController {
     public ResponseEntity<String> handleDelete(@PathVariable String id) {
         boolean deleted = deckService.deleteDeck(id);
         if (!deleted) {
-            throw new ApiRequestException("Deck of id " + id + " not deleted");
+            throw new IllegalUserInputException("Deck of id " + id + " not deleted");
         }
         return ResponseEntity.ok("Deck deleted successfully");
     }
