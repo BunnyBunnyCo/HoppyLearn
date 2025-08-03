@@ -25,7 +25,7 @@ public class DeckController {
         this.deckService = deckService;
     }
 
-    @PostMapping("/deck")
+    @PostMapping("/decks")
     public ResponseEntity<DeckResponse> handlePost(@RequestBody DeckRequest deckRequest) {
         Deck deck = deckService.createDeck(deckRequest.getDeckName());
         if (deck == null) {
@@ -36,8 +36,9 @@ public class DeckController {
         return ResponseEntity.created(location).body(response);
     }
 
-    @GetMapping("/deck")
-    public ResponseEntity<DeckResponse> handleGet(
+    // Returns a single deck by id or name, or a collection of decks
+    @GetMapping("/decks")
+    public ResponseEntity<?> handleGet(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String name) {
 
@@ -48,7 +49,13 @@ public class DeckController {
 
         // Check for missing parameters
         if (id == null && name == null) {
-            throw new IllegalUserInputException("Must specify either id or name parameter");
+            List<Deck> decks = deckService.getAllDecks();
+            List<DeckResponse> responses = new ArrayList<>();
+            for (Deck deck : decks) {
+                DeckResponse response = new DeckResponse(deck);
+                responses.add(response);
+            }
+            return ResponseEntity.ok(responses);
         }
 
         Deck deck;
@@ -67,18 +74,7 @@ public class DeckController {
         return ResponseEntity.ok(new DeckResponse(deck));
     }
 
-    @GetMapping("/decks")
-    public ResponseEntity<List<DeckResponse>> handleGetAll() {
-        List<Deck> decks = deckService.getAllDecks();
-        List<DeckResponse> responses = new ArrayList<>();
-        for (Deck deck : decks) {
-            DeckResponse response = new DeckResponse(deck);
-            responses.add(response);
-        }
-        return ResponseEntity.ok(responses);
-    }
-
-    @DeleteMapping("/deck/{id}")
+    @DeleteMapping("/decks/{id}")
     public ResponseEntity<String> handleDelete(@PathVariable Long id) {
         boolean deleted = deckService.deleteDeck(id);
         if (!deleted) {
