@@ -1,5 +1,6 @@
 package com.hoppylearn.service.impl;
 
+import com.hoppylearn.exception.IllegalUserInputException;
 import com.hoppylearn.model.entity.Deck;
 import com.hoppylearn.repository.DeckRepository;
 import com.hoppylearn.service.DeckService;
@@ -22,11 +23,11 @@ public class InMemoryDeckService implements DeckService {
     @Override
     public Deck createDeck(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Deck name cannot be null or empty");
+            throw new IllegalUserInputException("Deck name cannot be null or empty");
         }
 
         if (this.deckExists(name)) {
-            throw new IllegalArgumentException("Deck name already exists");
+            throw new IllegalUserInputException("Deck name already exists: " + name.trim());
         }
 
         Deck deck = new Deck(name.trim());

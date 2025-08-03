@@ -1,5 +1,6 @@
 package com.hoppylearn.repository.impl;
 
+import com.hoppylearn.exception.IllegalUserInputException;
 import com.hoppylearn.model.entity.Deck;
 import com.hoppylearn.repository.DeckRepository;
 import org.springframework.context.annotation.Profile;
@@ -22,7 +23,7 @@ public class InMemoryDeckRepository implements DeckRepository {
     @Override
     public Deck saveDeck(Deck deck) {
         if (deck == null) {
-            throw new IllegalArgumentException("Deck cannot be null");
+            throw new IllegalUserInputException("Deck cannot be null");
         }
 
         if (deck.getId() == null) {
