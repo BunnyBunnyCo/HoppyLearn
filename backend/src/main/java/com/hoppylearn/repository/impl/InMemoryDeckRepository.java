@@ -1,6 +1,7 @@
 package com.hoppylearn.repository.impl;
 
 import com.hoppylearn.exception.IllegalUserInputException;
+import com.hoppylearn.exception.ResourceNotFoundException;
 import com.hoppylearn.model.entity.Deck;
 import com.hoppylearn.model.paramaters.DeckSearchParams;
 import com.hoppylearn.repository.DeckRepository;
@@ -58,10 +59,10 @@ public class InMemoryDeckRepository implements DeckRepository {
 
     @Override
     public boolean deleteDeck(String id) {
-        if (id == null) {
-            return false;
-        }
         Deck removedDeck = storage.remove(id);
+        if (removedDeck == null) {
+            throw new ResourceNotFoundException("Deck not found with id: " + id);
+        }
         names.remove(removedDeck.getDeckName());
         return removedDeck != null;
     }

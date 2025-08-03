@@ -54,7 +54,7 @@ public class InMemoryDeckService implements DeckService {
     @Override
     public boolean deleteDeck(String id) {
         if (id == null) {
-            return false;
+            throw new IllegalUserInputException("Deck ID cannot be null");
         }
         return deckRepository.deleteDeck(id);
     }
@@ -62,7 +62,7 @@ public class InMemoryDeckService implements DeckService {
     @Override
     public boolean deckExistsById(String id) {
         if (id == null) {
-            return false;
+            throw new IllegalUserInputException("Deck ID cannot be null");
         }
         return deckRepository.deckExistsById(id);
     }

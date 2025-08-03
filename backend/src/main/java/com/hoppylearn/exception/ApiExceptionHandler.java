@@ -27,7 +27,7 @@ public class ApiExceptionHandler {
         return handleException(
                 e,
                 "an unexpected error occurred",
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
