@@ -42,11 +42,6 @@ public class DeckController {
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String name) {
 
-        // Check for ambiguous parameters
-        if (id != null && name != null) {
-            throw new IllegalUserInputException("Cannot specify both id and name parameters");
-        }
-
         // Check for missing parameters
         if (id == null && name == null) {
             List<Deck> decks = deckService.getAllDecks();
@@ -56,6 +51,11 @@ public class DeckController {
                 responses.add(response);
             }
             return ResponseEntity.ok(responses);
+        }
+
+        // Check for ambiguous parameters
+        if (id != null && name != null) {
+            throw new IllegalUserInputException("Cannot specify both id and name parameters");
         }
 
         Deck deck;
