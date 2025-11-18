@@ -7,6 +7,7 @@ import com.hoppylearn.model.paramaters.DeckSearchParams;
 import com.hoppylearn.model.request.DeckRequest;
 import com.hoppylearn.model.response.DeckResponse;
 import com.hoppylearn.service.DeckService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1")
@@ -28,7 +31,7 @@ public class DeckController {
     }
 
     @PostMapping("/decks")
-    public ResponseEntity<DeckResponse> handlePost(@RequestBody DeckRequest deckRequest) {
+    public ResponseEntity<DeckResponse> handlePost(@Valid @RequestBody DeckRequest deckRequest) {
         Deck deck = deckService.createDeck(deckRequest.getDeckName());
         if (deck == null) {
             throw new IllegalUserInputException("Failed to create deck with name: " + deckRequest.getDeckName());
