@@ -8,7 +8,6 @@ import com.hoppylearn.model.request.DeckRequest;
 import com.hoppylearn.model.response.DeckResponse;
 import com.hoppylearn.service.DeckService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/v1")
+@RequiredArgsConstructor
 public class DeckController {
 
     private final DeckService deckService;
-
-    @Autowired
-    public DeckController(DeckService deckService) {
-        this.deckService = deckService;
-    }
 
     @PostMapping("/decks")
     public ResponseEntity<DeckResponse> handlePost(@Valid @RequestBody DeckRequest deckRequest) {
